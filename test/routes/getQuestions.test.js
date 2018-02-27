@@ -12,4 +12,15 @@ describe('Test server for POST /ques: ', () => {
       done();
     });
   });
+
+  test('Should return result \'Questions Stored in DB!\': ', (done) => {
+    const options = {
+      method: 'POST',
+      url: '/ques',
+    };
+    Server.inject(options, (response) => {
+      expect(response.result).toBe('Questions Stored in DB!');
+      done();
+    });
+  });
 });
