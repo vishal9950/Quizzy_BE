@@ -7,4 +7,15 @@ describe('Test server: ', () => {
       done();
     });
   });
+
+  test('Should return the users: ', (done) => {
+    const options = {
+      url: '/users',
+      method: 'GET',
+    };
+    Server.inject(options, (response) => {
+      expect(response.result).toEqual([]);
+      done();
+    });
+  });
 });
