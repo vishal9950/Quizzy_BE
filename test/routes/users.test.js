@@ -1,4 +1,5 @@
 const Server = require('../../src/server');
+const Models = require('../../models');
 
 describe('Test server: ', () => {
   test('Should return statusCode 200: ', (done) => {
@@ -16,6 +17,23 @@ describe('Test server: ', () => {
     Server.inject(options, (response) => {
       expect(response.result).toEqual([]);
       done();
+    });
+  });
+
+  test('Should store the user\'s details: ', (done) => {
+    Models.users.destroy({ truncate: true }).then(() => {
+      const options = {
+        url: '/users',
+        method: 'POST',
+        payload: {
+          username: 'Hva',
+          score: 6,
+        },
+      };
+      Server.inject(options, (response) => {
+        expect(response.result).toBe('User enterred!');
+        done();
+      });
     });
   });
 });
