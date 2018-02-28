@@ -24,6 +24,17 @@ const handler1 = (request, reply) => {
   });
 };
 
+const handler2 = (request, reply) => {
+  Models.users.findAll({
+    where: {
+      username: request.params.username,
+    },
+    attributes: ['score'],
+  }).then((value) => {
+    reply(value);
+  });
+};
+
 module.exports = [{
   path: '/users',
   method: 'GET',
@@ -33,6 +44,11 @@ module.exports = [{
   path: '/users',
   method: 'POST',
   handler: handler1,
+},
+{
+  path: '/score/{username}',
+  method: 'GET',
+  handler: handler2,
 },
 ];
 
