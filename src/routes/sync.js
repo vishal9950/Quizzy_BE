@@ -9,6 +9,16 @@ const handler = (request, reply) => {
       reply('Synced!').code(200);
     });
   });
+//   console.log(arrJSON);
+//   Models.state.upsert({
+//     where: {
+//       id: arrJSON.username,
+//       quesid: arrJSON.quesid,
+//       username: arrJSON.username,
+//     },
+//   }).then(() => {
+//     reply('Synced!');
+//   });
 };
 
 const handler1 = (request, reply) => {
@@ -22,14 +32,16 @@ const handler1 = (request, reply) => {
   });
 };
 
-module.exports = [{
-  path: '/sync',
-  method: 'POST',
-  handler,
-},
-{
-  path: '/sync/{username}',
-  method: 'GET',
-  handler: handler1,
-}];
+module.exports = [
+  {
+    path: '/sync',
+    method: 'POST',
+    handler,
+  },
+  {
+    path: '/sync/{username}',
+    method: 'GET',
+    handler: handler1,
+  },
+];
 
