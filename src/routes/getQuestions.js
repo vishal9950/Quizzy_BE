@@ -43,8 +43,23 @@ const handler = (request, reply) => {
   });
 };
 
-module.exports = {
-  path: '/ques',
-  method: 'POST',
-  handler,
+const handler1 = (request, reply) => {
+  Models.questions.findAll({
+    attributes: ['quesid', 'ques', 'correctans'],
+  }).then((ques) => {
+    reply(ques);
+  });
 };
+
+module.exports = [
+  {
+    path: '/ques',
+    method: 'POST',
+    handler,
+  },
+  {
+    path: '/ques',
+    method: 'GET',
+    handler: handler1,
+  },
+];
