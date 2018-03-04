@@ -10,7 +10,7 @@ const handler = (request, reply) => {
 
 const handler1 = (request, reply) => {
   console.log(request.payload);
-  const { username, score } = request.payload;
+  const { username, score } = JSON.parse(request.payload);
   Models.users.upsert({
     id: username,
     username,
